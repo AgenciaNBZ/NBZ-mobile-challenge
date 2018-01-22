@@ -1,28 +1,85 @@
-# Desafio da agência NBZ
+## Tecnologias utilizadas
+- Ionic Framework
+- MySQL
+- Laravel
+- CORS Everywhere
 
-## Descrição
+## Executando a aplicação
 
-Desenvolva uma API com laravel e um aplicativo com ionic, para controle de tarefas. 
-### 1. API
-Deve haver funções de login, listar todas as tarefas, ver uma tarefa específica, editar uma tarefa e apagar uma tarefa. 
-### 2. APP
-+ Usuário deve conseguir logar com o Login "nbz" e senha "123mil"
-+ Usuário deve conseguir ver todas suas tarefas
-+ Usuário deve conseguir ver uma tarefa específica
-+ Usuário deve conseguir editar uma de suas tarefas
-+ Usuário deve conseguir deletar uma de suas tarefas
+Como a API e o App ao rodarem localmente provocam CORS problems, utilizei a extensão CORS Everywhere para o firefox que permite que requisições CORS ocorram. Desta forma, não foi necessário instalar a dependência de  cors para laravel.
 
-## Requisitos obrigatórios
-+  php7.0 >=
-+  laravel 5.5
-+  mysql
-+  ionic
- 
-## Avaliação
-Será avaliado a escrita do código. Códigos mais modularizados receberão mais pontos, ou seja, muito código repetido será avaliado negativamente. Códigos bem organizados e comentados receberão mais pontos. Utilização de boas práticas serão avaliadas positivamente. A estética do aplicativo será avaliada positivamente e também será critério de desempate. 
-## Observações
-+  Não é necessário haver adição de usuários no aplicativo. 
-+  Escreva, de forma clara, como se roda sua aplicação no README.md
-   
-## Entrega
-Para entregar o desafio, basta fazer um fork desse repositorio e submeter um pull request. 
+É natural que ao colocar a API em um servidor externo, não ocorra CORS, e por tanto, tal aplicação seria desnecessária.
+
+Se você for rodar o aplicativo no browser, o CORS Everywhere ou outra extensão semelhante se faz necessário.
+
+Se você quiser rodar o aplicativo no celular, precisará colocar a API em um servidor real, ou executar ações para que o cors seja tratado entre o seu celular e o seu computador.
+
+
+#### Crie a base de dados
+Crie uma base de dados MySQL para a aplicação. Sugiro que a base se chame "tasks".
+
+#### Clone e execute a API
+Realize o `git clone` da api, e modifique o arquivo `.env` colocando suas credenciais do banco de dados para a API.
+
+Para rodar a api em Laravel, tendo as tecnologias descritas na seção "Laravel" e o banco de dados configurado, basta navegar até a pasta da API e executar os comandos:
+```
+composer install
+php artisan migrate
+php artisan passport:install
+php artisan serve
+```
+#### Clone e execute o App
+
+Realize o `git clone` do app, em seguida navegue até a pasta do app e, no arquivo src/index.html, substitua o texto 'localhost:8000' na variável APP_WS pelo endereço e porta do servidor que está executando a API, ou deixe como está, caso vá rodar no localhost:8000.
+
+Em seguida, execute os comandos:
+```
+$ npm install
+$ ionic serve
+```
+O comando `ionic serve` vai executar a aplicação em um navegador.
+
+#### FIM
+
+Agora você pode se cadastrar como quiser e realizar login utilizando o e-mail e a senha que cadastrou. Não esqueça de utilizar uma ferramenta para driblar o CORS.
+
+## LARAVEL
+php artisan -V
+
+    Laravel Framework 5.5.32
+laravel -v
+
+    Laravel Installer 1.5.0
+
+
+## IONIC INFO
+
+cli packages: (/home/jp/.npm-global/lib/node_modules)
+
+    @ionic/cli-utils  : 1.19.1
+    ionic (Ionic CLI) : 3.19.1
+
+global packages:
+
+    cordova (Cordova CLI) : 8.0.0
+
+local packages:
+
+    @ionic/app-scripts : 3.1.8
+    Cordova Platforms  : android 7.0.0
+    Ionic Framework    : ionic-angular 3.9.2
+
+System:
+
+    Android SDK Tools : 25.2.5
+    Node              : v9.3.0
+    npm               : 5.5.1
+    OS                : Linux 4.9
+
+Environment Variables:
+
+    ANDROID_HOME : /home/linuxbrew/.linuxbrew/Cellar/android-sdk/24.4.1_1
+
+Misc:
+
+    backend : pro
