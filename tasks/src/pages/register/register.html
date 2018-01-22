@@ -1,0 +1,37 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="complementary">
+    <ion-title>Registre-se</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="register()">
+    <img src="/assets/imgs/ot.png" alt="Onion Tasks">
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="user.name" name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Repetir senha</ion-label>
+      <ion-input type="password" [(ngModel)]="user.c_password" name="c_password"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" color="primary" full [disabled]="!(user.name && user.email && user.password && (user.password == user.c_password))">Registrar</button>
+  </form>
+</ion-content>

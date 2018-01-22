@@ -1,0 +1,16 @@
+page-tasks {
+  .item-inner {
+    margin-left: 2px!important;
+  }
+
+  ion-card-header {
+    position: relative;
+    background-color: #f5f5f5;
+  }
+
+  ion-card-header span {
+    position: absolute;
+    right: 14px;
+    top: 17px;
+  }
+}

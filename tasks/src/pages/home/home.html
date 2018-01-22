@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Início</ion-title>
+    <ion-buttons end>
+      <button icon-only ion-button (click)="logout.do()">
+         <ion-icon name="power"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="tasks.getTasks($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-fab bottom right>
+    <button ion-fab (click)="tasks.addTask()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  <div class="title-card">
+    <h1>HOJE</h1>
+    <span><ion-icon name="calendar"></ion-icon> {{tasks.datePrint(today, 'll')}}</span>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      Tarefas <ion-badge item-end>{{(tasks.todayTasks)? tasks.todayTasks.length: 0}}</ion-badge>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="tasks.todayTasks">
+        <button ion-item *ngFor="let task of tasks.todayTasks" (click)="tasks.show(task)">
+          <ion-icon name="{{tasks.getIcon(task.type)}}" color="{{tasks.getColor(task.type)}}" item-start></ion-icon>
+          {{task.name}}
+        </button>
+      </ion-list>
+      <ion-item *ngIf="!tasks.todayTasks">Aproveite o dia ;)</ion-item>
+    </ion-card-content>
+  </ion-card>
+  <div class="title-card">
+    <h1>Amanhã</h1>
+    <span><ion-icon name="calendar"></ion-icon> {{tasks.datePrint(tomorrow, 'll')}}</span>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      Tarefas <ion-badge item-end>{{(tasks.tomorrowTasks)? tasks.tomorrowTasks.length: 0}}</ion-badge>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <button ion-item *ngFor="let task of tasks.tomorrowTasks" (click)="tasks.show(task)">
+          <ion-icon name="{{tasks.getIcon(task.type)}}" color="{{tasks.getColor(task.type)}}" item-start></ion-icon>
+          {{task.name}}
+        </button>
+      </ion-list>
+      <ion-item *ngIf="!tasks.tomorrowTasks">Nenhuma tarefa agendada.</ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
